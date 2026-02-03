@@ -48,19 +48,19 @@ const Home = () => {
   }, []);
 
   const initAutocomplete = () => {
-    if (!fromInputRef.current || !toInputRef.current) return;
+    if (!toInputRef.current) return;
 
-    const fromAuto = new window.google.maps.places.Autocomplete(fromInputRef.current);
+    // const fromAuto = new window.google.maps.places.Autocomplete(fromInputRef.current);
     const toAuto = new window.google.maps.places.Autocomplete(toInputRef.current);
 
-    fromAuto.addListener('place_changed', () => {
-      const place = fromAuto.getPlace();
-      setFormData(prev => ({
-        ...prev,
-        fromLocation: place.formatted_address || '',
-        fromPlaceId: place.place_id || '',
-      }));
-    });
+    // fromAuto.addListener('place_changed', () => {
+    //   const place = fromAuto.getPlace();
+    //   setFormData(prev => ({
+    //     ...prev,
+    //     fromLocation: place.formatted_address || '',
+    //     fromPlaceId: place.place_id || '',
+    //   }));
+    // });
 
     toAuto.addListener('place_changed', () => {
       const place = toAuto.getPlace();
