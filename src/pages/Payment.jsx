@@ -77,15 +77,41 @@ const Payment = () => {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
-            customerName: bookingData.customerName,
-            customerEmail: bookingData.customerEmail,
-            customerPhone: bookingData.customerPhone,
+            // ─── Customer ─────────────────────────
+            customerName: bookingData.user.fullName,
+            customerEmail: bookingData.user.email,
+            customerPhone: bookingData.user.mobile,
+
+            // ─── Route ────────────────────────────
             pickupLocation: bookingData.fromLocation,
             dropoffLocation: bookingData.toLocation,
+
+            // ─── Car & Pricing Inputs ──────────────
             carId: bookingData.selectedCar._id,
             distanceMiles: bookingData.pricing.distanceMiles,
             isReturnTrip: bookingData.isReturnTrip,
+            couponCode: bookingData.pricing?.appliedCoupon || null,
+
+            // ─── Passenger Info ────────────────────
+            passengers: bookingData.user.passengers,
+
+            // ─── Luggage ──────────────────────────
+            luggage: {
+              largeBags23kg: bookingData.user.luggage.largeBags23kg,
+              smallBags15kg: bookingData.user.luggage.smallBags15kg,
+              extraLargeItemType: bookingData.user.luggage.extraLargeItemType,
+              extraLargeItemNote: bookingData.user.luggage.extraLargeItemNote || "",
+            },
+
+            // ─── Flight Info ───────────────────────
+            flight: {
+              flightNumber: bookingData.user.flight.flightNumber,
+              arrivingFrom: bookingData.user.flight.arrivingFrom,
+              arrivalDateTime: bookingData.user.flight.arrivalDateTime,
+              meetAndGreet: bookingData.user.flight.meetAndGreet,
+            },
           }),
+
         });
 
         setCompleted(true);

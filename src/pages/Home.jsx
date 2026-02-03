@@ -145,18 +145,36 @@ const Home = () => {
                 {/* From Location */}
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">
-                    From
+                    From (Airport)
                   </label>
-                  <input
-                    ref={fromInputRef}
-                    type="text"
-                    name="fromLocation"
-                    value={formData.fromLocation}
-                    onChange={handleChange}
-                    placeholder="Enter pickup location"
-                    className="input-field"
-                    required
-                  />
+
+                  <div className="select-wrapper">
+                    <select
+                      className="select-field"
+                      value={formData.fromPlaceId}
+                      onChange={(e) => {
+                        const airport = airports.find(
+                          (a) => a.placeId === e.target.value
+                        );
+
+                        setFormData((prev) => ({
+                          ...prev,
+                          fromLocation: airport?.name || '',
+                          fromPlaceId: airport?.placeId || '',
+                        }));
+                      }}
+                      required
+                    >
+                      <option value="">Select airport</option>
+                      {airports.map((airport) => (
+                        <option key={airport.code} value={airport.placeId}>
+                          {airport.name} ({airport.code})
+                        </option>
+                      ))}
+                    </select>
+
+                    <span className="select-icon">⌄</span>
+                  </div>
                 </div>
 
                 {/* To Location */}
