@@ -40,13 +40,16 @@
   }
 }
 
+
+
 .icon-left {
   position: absolute;
-  left: 1rem;              /* same as pl-11 alignment */
+  left: 1rem;
   top: 50%;
   transform: translateY(-50%);
   width: 18px;
   height: 18px;
-  color: #9ca3af;          /* gray-400 */
+  color: #9ca3af;
   pointer-events: none;
+  z-index: 1;
 }
